@@ -1,0 +1,42 @@
+/**
+ * Editor CSS rules
+ */
+body .keyfigure_bloc {
+	display: table;
+	padding: 0 1em;
+	position: relative;
+}
+body .keyfigure_bloc::before {
+	content: "\f313";
+	display: inline-block;
+	-webkit-font-smoothing: antialiased;
+	font: normal 20px/1 'dashicons';
+	vertical-align: top;
+	display: block;
+	position: absolute;
+	top: 0;
+	padding: 2px 3px;
+	background: #eee;
+	color: #999;
+}
+
+body .keyfigure_bloc_figure {
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 60px;
+	color: #000;
+	padding: .5em;
+	border-top: 1px dashed #ccc;
+	border-bottom: 1px dashed #ccc;
+	border-left: 1px dashed #ccc;
+}
+
+body .keyfigure_bloc_text {
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 1em;
+	font-size: 18px;
+	color: #000;
+	padding: 1em;
+	border: 1px dashed #ccc;
+}
