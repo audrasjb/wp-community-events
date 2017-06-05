@@ -1,19 +1,19 @@
 === WordPress Community Events ===
 Contributors: audrasjb,whodunitagency
-Tags: wordcamps, events, meetups, wordcamp, event, meetup, geolocation, list, community, wp.org, foundation, wordcamp central, map, cartographie
+Tags: wordcamps, events, meetups, wordcamp, event, meetup, geolocation, list, community, wp.org, foundation, wordcamp central, map, cartographie, shortcode, shortcodes
 Requires at least: 4.0
 Tested up to: 4.8
 Stable tag: 1.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Display WordPress official community WordCamps & Meetups on beautiful vector maps.
+Display WordPress official community WordCamps & Meetups with shortcodes on beautiful vector maps.
 
 == Description ==
 
 **Main features**
 
-Display WordPress official community WordCamps & Meetups on beautiful vector maps.
+Display WordPress official community WordCamps & Meetups with shortcodes on beautiful vector maps.
 
 **Credits**
 
@@ -33,12 +33,9 @@ No question for the moment.
 
 == Screenshots ==
 
-1. Example of key figure in action.
-2. Plugin settings (first part).
-3. Plugin settings (second part).
-4. Plugin settings (third and last part: front-end preview).
-5. Plugin rendering in visual editor.
-6. And a last example… be creative and do your own now! :)
+1. Plugin settings.
+2. Shortcode insertion.
+3. Plugin settings.
 
 == Changelog ==
 
