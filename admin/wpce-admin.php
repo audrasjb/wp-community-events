@@ -33,7 +33,7 @@ function enqueue_scripts_wpce_admin() {
 
 add_action( 'admin_menu', 'wpce_add_admin_menu' );
 function wpce_add_admin_menu(  ) { 
-	add_options_page( __('WP Community events settings', 'wp-community-events'), __('Community Events shortcode generator', 'wp-community-events'), 'manage_options', 'wp-community-events', 'wpce_options_page' );
+	add_options_page( __('WP Community Events settings', 'wp-community-events'), __('WP Community Events shortcode generator', 'wp-community-events'), 'manage_options', 'wp-community-events', 'wpce_options_page' );
 }
 
 add_action( 'admin_init', 'wpce_settings_init' );
@@ -101,8 +101,10 @@ function wpce_options_page() {
 				isset($_POST['wpce_localisation']) && 
 				isset($_POST['wpce_map_height']) && 
 				isset($_POST['wpce_highlight_hosting_countries']) && 
+				isset($_POST['wpce_wordcamp_bool']) &&
 				isset($_POST['wpce_wordcamp_icon_type']) && 
 				isset($_POST['wpce_wordcamp_icon_color']) && 
+				isset($_POST['wpce_meetup_bool']) &&
 				isset($_POST['wpce_meetup_icon_type']) && 
 				isset($_POST['wpce_meetup_icon_color']) 
 				) :
@@ -128,7 +130,17 @@ function wpce_options_page() {
 
 			if ( isset($_POST['wpce_highlight_hosting_countries']) ) :
 				$wpce_highlight_hosting_countries = sanitize_text_field($_POST['wpce_highlight_hosting_countries']);
-			else : $wpce_highlight_hosting_countries = 'yes';
+			else : $wpce_highlight_hosting_countries = 1;
+			endif;
+			
+			if ( isset($_POST['wpce_highlight_hosting_countries_color']) ) :
+				$wpce_highlight_hosting_countries_color = sanitize_text_field($_POST['wpce_highlight_hosting_countries_color']);
+			else : $wpce_highlight_hosting_countries_color = '#B89E97';
+			endif;
+			
+			if ( isset($_POST['wpce_wordcamp_bool']) ) :
+				$wpce_wordcamp_bool = sanitize_text_field($_POST['wpce_wordcamp_bool']);
+			else : $wpce_wordcamp_bool = 1;
 			endif;
 
 			if ( isset($_POST['wpce_wordcamp_icon_type']) ) :
@@ -137,17 +149,22 @@ function wpce_options_page() {
 			endif;
 
 			if ( isset($_POST['wpce_wordcamp_icon_color']) ) :
-				echo $wpce_wordcamp_icon_color = sanitize_text_field($_POST['wpce_wordcamp_icon_color']);
+				$wpce_wordcamp_icon_color = sanitize_text_field($_POST['wpce_wordcamp_icon_color']);
 			else : $wpce_wordcamp_icon_color = '#e55400';
 			endif;
 
+			if ( isset($_POST['wpce_meetup_bool']) ) :
+				$wpce_meetup_bool = sanitize_text_field($_POST['wpce_meetup_bool']);
+			else : $wpce_meetup_bool = 1;
+			endif;
+
 			if ( isset($_POST['wpce_meetup_icon_type']) ) :
-				echo $wpce_meetup_icon_type = sanitize_text_field($_POST['wpce_meetup_icon_type']);
+				$wpce_meetup_icon_type = sanitize_text_field($_POST['wpce_meetup_icon_type']);
 			else : $wpce_meetup_icon_type = 'marker';
 			endif;
 
 			if ( isset($_POST['wpce_meetup_icon_color']) ) :
-				echo $wpce_meetup_icon_color = sanitize_text_field($_POST['wpce_meetup_icon_color']);
+				$wpce_meetup_icon_color = sanitize_text_field($_POST['wpce_meetup_icon_color']);
 			else : $wpce_meetup_icon_color = '#005fef';
 			endif;
 			?>
@@ -171,11 +188,35 @@ function wpce_options_page() {
 							<input type="text" name="wpce_map_height" id="wpce_map_height" value="<?php echo $wpce_map_height; ?>" />
 						</td>
 					</tr>
+					<tr>
+						<th scope="row"><label for="wpce_highlight_hosting_countries"><?php echo __('Highlight hosting countries', 'wp-community-events'); ?></label></th>
+						<td>
+							<select name="wpce_highlight_hosting_countries" id="wpce_highlight_hosting_countries">
+								<option value="1" <?php selected( $wpce_wordcamp_bool, 1 ); ?>><?php echo __('Yes, please', 'wp-community-events'); ?></option>
+								<option value="0" <?php selected( $wpce_wordcamp_bool, 0 ); ?>><?php echo __('No, thanks', 'wp-community-events'); ?></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="wpce_highlight_hosting_countries_color"><?php echo __('Highlighted countries color', 'wp-community-events'); ?></label></th>
+						<td>
+							<input type="text" class="wpce-colorpicker" name="wpce_highlight_hosting_countries_color" id="wpce_highlight_hosting_countries_color" value="<?php echo $wpce_highlight_hosting_countries_color; ?>" />
+						</td>
+					</tr>
 				</tbody>
 			</table>
 			<h2><?php echo __('WordCamps &amp; Meetups markers settings', 'wp-community-events'); ?></h2>
 			<table class="form-table">
 				<tbody>
+					<tr>
+						<th scope="row"><label for="wpce_wordcamp_bool"><?php echo __('Display WordCamps', 'wp-community-events'); ?></label></th>
+						<td>
+							<select name="wpce_wordcamp_bool" id="wpce_wordcamp_bool">
+								<option value="1" <?php selected( $wpce_wordcamp_bool, 1 ); ?>><?php echo __('Yes, please', 'wp-community-events'); ?></option>
+								<option value="0" <?php selected( $wpce_wordcamp_bool, 0 ); ?>><?php echo __('No, thanks', 'wp-community-events'); ?></option>
+							</select>
+						</td>
+					</tr>
 					<tr>
 						<th scope="row"><label for="wpce_wordcamp_icon_type"><?php echo __('WordCamps marker icon type', 'wp-community-events'); ?></label></th>
 						<td>
@@ -193,6 +234,16 @@ function wpce_options_page() {
 						<th scope="row"><label for="wpce_wordcamp_icon_color"><?php echo __('WordCamps marker icon color', 'wp-community-events'); ?></label></th>
 						<td>
 							<input type="text" class="wpce-colorpicker" name="wpce_wordcamp_icon_color" id="wpce_wordcamp_icon_color" value="<?php echo $wpce_wordcamp_icon_color; ?>" />
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="wpce_meetup_bool"><?php echo __('Display Meetups', 'wp-community-events'); ?></label></th>
+						<td>
+							<select name="wpce_meetup_bool" id="wpce_meetup_bool">
+								<option value="1" <?php selected( $wpce_meetup_bool, 1 ); ?>><?php echo __('Yes, please', 'wp-community-events'); ?></option>
+								<option value="0" <?php selected( $wpce_meetup_bool, 0 ); ?>><?php echo __('No, thanks', 'wp-community-events'); ?></option>
+							</select>
+							<p class="description">Note that you will need a valid meetup.com API key.</p>
 						</td>
 					</tr>
 					<tr>
@@ -220,7 +271,7 @@ function wpce_options_page() {
 		</form>
 		<p><?php echo __('You can insert the following shortcode into any type of page, post, widget…', 'wp-community-events'); ?></p>
 		<p>
-			<textarea id="wpce_shortcode" name="wpce_shortcode" cols="100" rows="10"><?php echo '[wpce localisation="' . $wpce_localisation . '" height="' . $wpce_map_height . '" countries="' . $wpce_highlight_hosting_countries . '" wc-icon="' . $wpce_wordcamp_icon_type . '" wc-color="' . $wpce_wordcamp_icon_color . '" mt-icon="' . $wpce_meetup_icon_type . '" mt-color="' . $wpce_meetup_icon_color . '"]'; ?></textarea>
+			<textarea id="wpce_shortcode" name="wpce_shortcode" cols="100" rows="10"><?php echo '[wpce localisation="' . $wpce_localisation . '" height="' . $wpce_map_height . '" countries="' . $wpce_highlight_hosting_countries . '" countries-color="' . $wpce_highlight_hosting_countries_color . '" wc-display="' . $wpce_wordcamp_bool . '" wc-icon="' . $wpce_wordcamp_icon_type . '" wc-color="' . $wpce_wordcamp_icon_color . '" mt-display="' . $wpce_meetup_bool . '" mt-icon="' . $wpce_meetup_icon_type . '" mt-color="' . $wpce_meetup_icon_color . '"]'; ?></textarea>
 		</p>
 	</div>
 	<?php		

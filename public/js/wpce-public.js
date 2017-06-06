@@ -73,13 +73,7 @@ jQuery(document).ready(function() {
 			'right': 0,
 			'fontSize': 16,
 			'horizontalGap': 10,
-			'data': [{
-				'title': 'WordCamps',
-				'color': '#820F0B'
-			}, {
-				'title': 'Meetups',
-				'color': '#1098F7'
-			}]
+			'data': mapLegendDatas
 		}
 	});
 
