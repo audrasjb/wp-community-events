@@ -58,7 +58,7 @@ function wpce_settings_init() {
 }
 
 function wpce_settings_section_callback(  ) { 
-	echo '<p>' . __( 'Meetup.com events needs a personnal API Key to work. You can get an API Key in few seconds here (you have to get a free meetup.com account).', 'wp-community-events' ) . '</p>';
+	echo '<p>' . __( 'Meetup.com events needs a personnal API Key to work. <a href="https://secure.meetup.com/meetup_api/key/" target="_blank" title="This links will open a new window">You can get an API Key in few seconds here</a> (you have to get a free meetup.com account to generate it).', 'wp-community-events' ) . '</p>';
 }
 
 function wpce_field_meetup_api_render(  ) { 
@@ -69,7 +69,7 @@ function wpce_field_meetup_api_render(  ) {
 		$option_meetup_api_key = '';		
 	}
 	?>
-	<input type="text" name="wpce_settings[wpce_meetup_api_key]" value="<?php echo $option_meetup_api_key; ?>" />
+	<input type="text" name="wpce_settings[wpce_meetup_api_key]" value="<?php echo $option_meetup_api_key; ?>" class="large-text" />
 	<?php
 }
 
