@@ -71,6 +71,7 @@
 		function wpce_shortcode_display( $atts ) {
 
 	 		// Styles and scripts inclusion
+	 		wp_enqueue_style( 'wpce-public', plugin_dir_url( __FILE__ ) . 'css/wpce-public.css', array(), '', 'all' );
 	 		wp_enqueue_script( 'wpce-ammap', plugin_dir_url( __FILE__ ) . 'js/ammap.js', array( 'jquery' ), '', false );
 	 		wp_enqueue_script( 'wpce-worldlow', plugin_dir_url( __FILE__ ) . 'js/worldLow.js', array( 'jquery' ), '', false );
 	 		wp_enqueue_script( 'wpce-public', plugin_dir_url( __FILE__ ) . 'js/wpce-public.js', array( 'jquery' ), '', false );
@@ -176,6 +177,7 @@
 						endif;
 						$dateEnd = '';
 						$title = $value['group']['name'];
+						$titleAndDate = $title . ' – ' . $dateStart;
 						$location = $value['venue']['city'];
 						$url = $value['event_url'];
 						$twitterAccount = '';
@@ -192,7 +194,8 @@
 						$html .= '
 						markers.push({
 							"id": ' . json_encode($eventID) . ',
-							"title": ' . json_encode($title) . ',
+							"title": ' . json_encode($titleAndDate) . ',
+							"eventURL": ' . json_encode($url) . ',
 							"selectable": true,
 							"latitude": ' . $lat . ',
 							"longitude": ' . $lng . ',
@@ -225,6 +228,7 @@
 						continue;
 					endif;
 					$title = $value['title']['rendered'];
+					$titleAndDate = $title . ' – ' . $dateStart;
 					$location = $value['Location'];
 					$url = $value['URL'];
 					$twitterAccount = $value['Twitter'];
@@ -240,7 +244,8 @@
 					$html .= '
 					markers.push({
 						"id": ' . json_encode($eventID) . ',
-						"title": ' . json_encode($title) . ',
+						"title": ' . json_encode($titleAndDate) . ',
+						"eventURL": ' . json_encode($url) . ',
 						"selectable": true,
 						"latitude": ' . $lat . ',
 						"longitude": ' . $lng . ',
@@ -311,7 +316,7 @@
 			$html .= '</script>';
 
 			// Map container
-			$html .= '<div id="wpce_map" class="wpce_map" style="height:'.$wpce_map_height.'px;"></div>';
+			$html .= '<div class="wpce_map_wrapper"><div id="wpce_map" class="wpce_map" style="height:'.$wpce_map_height.'px;"></div><div class="wpce_event_infos"><a href="#" class="wpce_event_link" target="_blank" title="This link will open a new window"><span class="wpce_event_name"></span> [➚]</a></div></div>';
 			
 			// Send HTML datas
 			return $html;

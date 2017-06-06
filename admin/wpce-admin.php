@@ -22,7 +22,7 @@ add_action( 'admin_enqueue_scripts', 'enqueue_styles_wpce_admin' );
 function enqueue_styles_wpce_admin() {
 	wp_enqueue_style( 'wp-color-picker' );
 	wp_enqueue_style( 'wpce-admin-styles', plugin_dir_url( __FILE__ ) . 'css/wpce-admin.css', array(), '', 'all' );
-	add_editor_style( plugin_dir_url( __FILE__ ) . 'css/wpce-admin-editor.css' );
+	//add_editor_style( plugin_dir_url( __FILE__ ) . 'css/wpce-admin-editor.css' );
 }
 	
 // Enqueue scripts
@@ -69,7 +69,7 @@ function wpce_field_meetup_api_render(  ) {
 		$option_meetup_api_key = '';		
 	}
 	?>
-	<input type="text" name="wpce_settings[wpce_meetup_api_key]" value="<?php echo $option_meetup_api_key; ?>" class="large-text" />
+	<input type="text" name="wpce_settings[wpce_meetup_api_key]" value="<?php echo $option_meetup_api_key; ?>" class="regular-text" />
 	<?php
 }
 
@@ -78,7 +78,7 @@ function wpce_options_page() {
 	?>
 	<div class="wrap">
 		
-		<h1><?php echo __('WP Community Events shortcode generator', 'wp-community-events'); ?></h1>
+		<h1><?php echo __('WP Community Events', 'wp-community-events'); ?></h1>
 		
 		<p><?php echo __('Manage <em>WP Community Events</em> settings below and generate map shortcodes.', 'wp-community-events'); ?></p>
 
@@ -169,7 +169,8 @@ function wpce_options_page() {
 			endif;
 			?>
 										
-			<h2><?php echo __('General map settings', 'wp-community-events'); ?></h2>
+			<h2><?php echo __('Shortcode generator', 'wp-community-events'); ?></h2>
+			<p><?php echo __('Please note: shortcode settings are not saved. This is only a onte-time shortcode generator.', 'wp-community-events'); ?></p>
 			<table class="form-table">
 				<tbody>
 					<tr>

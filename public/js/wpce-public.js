@@ -1,4 +1,5 @@
 jQuery(document).ready(function() {
+	jQuery('.wpce_event_infos').hide();
 	// Default focus values
 	if ( mapFocus == 'world' ) {
 		var mapZoomLevel = 1;
@@ -78,6 +79,12 @@ jQuery(document).ready(function() {
 	});
 
 	map.addListener('clickMapObject', function(event) {
-		console.log(event.mapObject.title);
+		if (event.mapObject.eventURL.length > 0) {
+			jQuery('.wpce_event_infos').slideUp(500, function(){
+				jQuery('.wpce_event_name').text(event.mapObject.title);
+				jQuery('.wpce_event_link').attr('href', event.mapObject.eventURL);
+				jQuery('.wpce_event_infos').slideDown(500);
+			});
+		}
 	});
 });
