@@ -77,11 +77,13 @@
 					'wc-color' => '#e55400',
 					'mt-icon' => 'marker',
 					'mt-color' => '#e55400',
+					'height' => '500',
 				),
 				$atts,
 				'wpce'
 			);
 			$focused_localisation = $atts['localisation'];
+			$wpce_map_height = $atts['height'];
 			$display_countries = $atts['countries'];
 			$wordcamp_marker = $atts['wc-icon'];
 			$wordcamp_marker_color = $atts['wc-color'];

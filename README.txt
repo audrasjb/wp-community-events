@@ -24,8 +24,8 @@ Add your own language pack on GlotPress or do pull requests on [Github](https://
 == Installation ==
 
 1. Install the plugin and activate.
-2. Go to Settings $gt; Key Figures to manage plugin settings.
-3. Insert key figure boxes in your content using the key figure button (see screenshots).
+2. Go to Settings $gt; Community events to manage plugin settings.
+3. Insert shortcode in your content using to make job done.
 
 == Frequently Asked Questions ==
 
