@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name:       WP Community Events
  * Plugin URI:        https://jeanbaptisteaudras.com/portfolio/extension-wordpress-chiffre-cles/
- * Description:       Display WordPress official community WordCamps & Meetups with shortcodes on beautiful vector maps.
+ * Description:       Display WordPress official community WordCamps & Meetups on vector maps.
  * Version:           1.0
  * Author:            Jean-Baptiste Audras, WordPress projects manager @ Whodunit
  * Author URI:        http://jeanbaptisteaudras.com
