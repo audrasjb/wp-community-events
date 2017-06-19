@@ -171,7 +171,7 @@
 					if (!empty($value['venue'])) :
 						$eventID = $value['id'];
 						if ( $value['time'] ) :
-							$dateStart = date( get_option('date_format'), intval($value['time'])/1000 );
+							$dateStart = date_i18n( get_option('date_format'), intval($value['time'])/1000);
 						else : 
 							continue;
 						endif;
@@ -218,12 +218,12 @@
 				foreach ( $upcoming_wordcamps as $key => $value ) : 
 					$eventID = $value['id'];
 					if ( $value['Start Date (YYYY-mm-dd)'] ) :
-						$dateStart = date( get_option('date_format'), $value['Start Date (YYYY-mm-dd)'] );
+						$dateStart = date_i18n( get_option('date_format'), strtotime($value['Start Date (YYYY-mm-dd)']) );
 					else : 
 						continue;
 					endif;
 					if ( $value['End Date (YYYY-mm-dd)'] ) : 
-						$dateEnd = date( get_option('date_format'), $value['End Date (YYYY-mm-dd)'] );
+						$dateEnd = date_i18n( get_option('date_format'), strtotime($value['End Date (YYYY-mm-dd)']) );
 					else : 
 						continue;
 					endif;
